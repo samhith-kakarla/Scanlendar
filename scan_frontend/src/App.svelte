@@ -14,6 +14,8 @@
   }}
 />
 
+<h1 class="text-purple-800">HOME</h1>
+
 <style global lang="postcss">
   @tailwind base;
 	@tailwind components;
