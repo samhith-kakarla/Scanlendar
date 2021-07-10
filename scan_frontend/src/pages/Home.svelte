@@ -3,7 +3,7 @@
 </script>
 
 <main>
-    <h1>HOME</h1>
+    <h1 class="">HOME</h1>
 </main>
 
 <style>
