@@ -4,17 +4,20 @@ import './App.css';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import { CalendarContextProvider } from './context/CalendarContext';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
-        </Switch>
-      </div>
-    </Router>
+    <CalendarContextProvider>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/dashboard" component={Dashboard} />
+          </Switch>
+        </div>
+      </Router>
+    </CalendarContextProvider>
   );
 }
 
