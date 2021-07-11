@@ -1,38 +1,50 @@
-import os
-import pickle
-
-from google_auth_oauthlib.flow import Flow, InstalledAppFlow
+from __future__ import print_function
+import datetime
+import os.path
 from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
+from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
 
-from .constants import GOOGLE_CLIENT_SECRET_FILE, GOOGLE_API_NAME, GOOGLE_API_VERSION, GOOGLE_API_SCOPES
+scopes = ['https://www.googleapis.com/auth/calendar']
 
+flow = InstalledAppFlow.from_client_secrets_file('desktop_secret.json', scopes=scopes)
+credentials = flow.run_console()
 
-def create_google_service():
-    creds = None
+import pickle
+pickle.dump(credentials, open("token.pkl", "wb"))
+credentials = pickle.load(open("token.pkl", "rb"))
 
-    pickle_file = f'token_{GOOGLE_API_NAME}_{GOOGLE_API_VERSION}.pickle'
-    
-    if os.path.exists(pickle_file):
-        with open(pickle_file, 'rb') as token:
-            creds = pickle.load(token)
+service = build("calendar", "v3", credentials=credentials)
 
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(GOOGLE_CLIENT_SECRET_FILE, GOOGLE_API_SCOPES)
-            cred = flow.run_local_server()
+result = service.calendarList().list().execute()
 
-        with open(pickle_file, 'wb') as token:
-            pickle.dump(cred, token)
-
-    try:
-        service = build(GOOGLE_API_NAME, GOOGLE_API_VERSION, credentials=creds)
-        print(GOOGLE_API_NAME, 'service created successfully')
-        return service
-    except Exception as e:
-        print(e)
-        return None
-
+from datetime import datetime, timedelta
+import datefinder
+def create_event(start_time_str, summary, duration=1, desciprtion=None, location=None, timezone='America/New_York'):
+    calendar_id = result['items'][0]['id']
+    matches = list(datefinder.find_dates(start_time_str))
+    if len(matches):
+        start_time = matches[0]
+        end_time = start_time + timedelta(hours=duration)
+    event = {
+        'summary': summary,
+        'location': location,
+        'description': desciprtion,
+        'start': {
+            'dateTime': start_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            'timeZone': timezone,
+        },
+        'end': {
+            'dateTime': end_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            'timeZone': timezone,
+        },
+        'reminders': {
+            'useDefault': False,
+            'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 10},
+            ],
+        },
+        }
+    service.events().insert(calendarId=calendar_id, body=event).execute()

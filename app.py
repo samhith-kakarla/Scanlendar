@@ -12,3 +12,4 @@ app.include_router(calendar_router, prefix="/calendar", tags=["Calendar Manager"
 @app.get('/')
 def home():
     return { "data": "Hello World" }
+

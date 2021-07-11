@@ -13,6 +13,7 @@ requests = "*"
 google-api-python-client = "*"
 google-auth-httplib2 = "*"
 google-auth-oauthlib = "*"
+datefinder = "*"
 
 [requires]
 python_version = "3.9"
