@@ -166,6 +166,7 @@
   letter-spacing: 0;
   margin-left: 1.0px;
   margin-top: 10px;
+  margin-bottom: 20px;
   min-height: 25px;
   min-width: 173px;
   mix-blend-mode: normal;
@@ -177,13 +178,13 @@
   mix-blend-mode: normal;
   width: 250px;
   display: block;
+  margin-bottom: 15px;
   margin: auto;
   color: white;
   font-size: 12px;
   font-style: italic;
   padding: 15px;
   border: none;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
   background-color:rgb(138, 223, 242)
 }
 

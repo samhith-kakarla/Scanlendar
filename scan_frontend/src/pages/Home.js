@@ -6,7 +6,6 @@ import GoogleButton from 'react-google-button';
 // import { initCalendarClient, googleAuthenticate } from '../api/google';
 import firebaseAuth from '../firebase/firebaseConfig';
 import { CalendarContext } from '../context/CalendarContext';
-import { Navbar } from '../components/Navbar';
 import { MainAppBar } from '../components/MainAppBar';
 import { colors } from '../theme/colors';
 import mainLogo from '../assets/logo.jpg';
@@ -37,29 +36,29 @@ const Home = () => {
       gapi.client.load('calendar', 'v3', () => console.log('bam!'))
 
       gapi.auth2.getAuthInstance().signIn().then((googleUser) => {
-        // gapi.client.calendar.events.list({
-        //   calenderId: 'primary',
-        //   timeMin: new Date().toISOString(),
-        //   showDeleted: false,
-        //   singleEvents: true,
-        //   maxResults: 5,
-        //   orderBy: 'startTime',
-        // }).then((calendarEvents) => {
-        //   setCalendarEvents(calendarEvents.result.items);
-        // });      
-        // const token = googleUser.getAuthResponse().id_token;
-        // console.log(token);
+        gapi.client.calendar.events.list({
+          calenderId: 'primary',
+          timeMin: new Date().toISOString(),
+          showDeleted: false,
+          singleEvents: true,
+          maxResults: 5,
+          orderBy: 'startTime',
+        }).then((calendarEvents) => {
+          setCalendarEvents(calendarEvents.result.items);
+        });      
+        const token = googleUser.getAuthResponse().id_token;
+        console.log(token);
 
-        // const credential = firebaseAuth.auth.GoogleAuthProvider.credential(token);
-        // console.log(credential);
+        const credential = firebaseAuth.auth.GoogleAuthProvider.credential(token);
+        console.log(credential);
 
-        // firebaseAuth.auth().signInWithCredential(credential).then(() => {
-        //   console.log("firebase log in successful");
-        //   setIsAuthenticated(true);
-        // }).catch((error) => {
-        //   console.log(error);
-        //   console.log("firebase login unsuccessful");
-        // })
+        firebaseAuth.auth().signInWithCredential(credential).then(() => {
+          console.log("firebase log in successful");
+          setIsAuthenticated(true);
+        }).catch((error) => {
+          console.log(error);
+          console.log("firebase login unsuccessful");
+        })
         setIsAuthenticated(true);
       });
     });

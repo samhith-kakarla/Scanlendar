@@ -13,11 +13,14 @@ export const getUserCalendar = async (gapi) => {
   return calendarEvents.result.items;
 }
 
-export const getEventInfo = (text) => {
-  // make api request here
-}
+export const getEventInfo = async (text) => {
+  fetch('http://127.0.0.1:5000/calendar/get_event_info/').then((response) => {
+    console.log("info retrieved!");
+    return response.data
+  });
+};
 
-export const addEvent = async (gapi) => {
+export const addEvent = async (gapi, info) => {
   const newEvent = await gapi.client.calendar.events.insert({
     calendarId: 'primary',
     start: {
