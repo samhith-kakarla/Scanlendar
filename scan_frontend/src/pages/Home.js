@@ -7,6 +7,7 @@ import GoogleButton from 'react-google-button';
 import firebaseAuth from '../firebase/firebaseConfig';
 import { CalendarContext } from '../context/CalendarContext';
 import { Navbar } from '../components/Navbar';
+import { MainAppBar } from '../components/MainAppBar';
 import { colors } from '../theme/colors';
 import mainLogo from '../assets/logo.jpg';
 
@@ -36,16 +37,16 @@ const Home = () => {
       gapi.client.load('calendar', 'v3', () => console.log('bam!'))
 
       gapi.auth2.getAuthInstance().signIn().then((googleUser) => {
-        gapi.client.calendar.events.list({
-          calenderId: 'primary',
-          timeMin: new Date().toISOString(),
-          showDeleted: false,
-          singleEvents: true,
-          maxResults: 5,
-          orderBy: 'startTime',
-        }).then((calendarEvents) => {
-          setCalendarEvents(calendarEvents.result.items);
-        });      
+        // gapi.client.calendar.events.list({
+        //   calenderId: 'primary',
+        //   timeMin: new Date().toISOString(),
+        //   showDeleted: false,
+        //   singleEvents: true,
+        //   maxResults: 5,
+        //   orderBy: 'startTime',
+        // }).then((calendarEvents) => {
+        //   setCalendarEvents(calendarEvents.result.items);
+        // });      
         // const token = googleUser.getAuthResponse().id_token;
         // console.log(token);
 
@@ -74,7 +75,7 @@ const Home = () => {
 
   return (
       <div style={{ backgroundColor: colors.blue1, height: '100vh' }}>
-          <Navbar />
+          <MainAppBar/>
           <img src={mainLogo} alt="" className="header-logo"/>
           <h1 className="header-text">Never miss an event again.</h1>
           <p className="header-description">
