@@ -74,7 +74,7 @@ def Nlp(text_data):
 
     for i in range(len(rfinal)):
         if rfinal[i] in days:
-            return_dict['day'] = rfinal[i]
+            return_dict['day'] = rfinal[i].capitalize()
         
         elif rfinal[i][0] in nums:
             return_dict['time'] = rfinal[i] + " pm"
