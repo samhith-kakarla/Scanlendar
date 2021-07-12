@@ -39,7 +39,7 @@ const Dashboard = () => {
         timeZone: 'America/New_York',
       },
       end: {
-        dateTime: info_end_time, 
+        dateTime: info.end_time, 
         timeZone: 'America/New_York',
       }, 
       summary: info.title,
