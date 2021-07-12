@@ -89,7 +89,8 @@ def Nlp(text_data):
             return_dict['day'] = rfinal[i].capitalize()
 
         elif rfinal[i][0] in nums:
-            return_dict['time'] = rfinal[i] + " pm"
+            return_dict['hours'] = rfinal[i][0:2]
+            return_dict['mins'] = rfinal[i][2:]
 
     return return_dict
 
@@ -97,7 +98,7 @@ def Nlp(text_data):
 if __name__ == "__main__":
     # Test calls
     text1 = "Meeting with John about virtual teaching and e-learning on Zoom a week from now on Friday at 12:34 PM."
-    text2 = "You, me, fun time at the carnival with Bill on Monday at 4 PM focused on winning prizes and playing games"
+    text2 = "You, me, fun time at the carnival with Bill on Monday at 4:00 PM focused on winning prizes and playing games"
     text3 = "We are eating pasta and having dinner at 10:27 PM on Tuesday. I am so excited for the fettucini alfredo"
     print(Nlp(text1))
     print(Nlp(text2))
