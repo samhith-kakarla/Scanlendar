@@ -1,5 +1,5 @@
-import firebase from '../firebase/firebaseConfig';
 
+import firebase from '../firebase/firebaseConfig';
 
 export const initCalendarClient = (gapi) => {
   const API_KEY = 'AIzaSyB6TxkQ0gs5PelUfEStXvsI3oEclp1qiKw';
@@ -33,36 +33,4 @@ export const googleAuthenticate = async (gapi) => {
 
 export const logoutUser = () => {
   firebase.auth().signOut();
-}
-
-export const getUserCalendar = async (gapi) => {
-  const calendarEvents = await gapi.client.calendar.events.list({
-    calenderId: 'primary',
-    timeMin: new Date().toISOString(),
-    showDeleted: false,
-    singleEvents: true,
-    maxResults: 5,
-    orderBy: 'startTime',
-  });
-
-  console.log(calendarEvents);
-  return calendarEvents.result.items;
-}
-
-export const addEvent = async (gapi) => {
-  const newEvent = await gapi.client.calendar.events.insert({
-    calendarId: 'primary',
-    start: {
-      dateTime: '', 
-      timeZone: 'America/Los_Angeles',
-    },
-    end: {
-      dateTime: '', 
-      timeZone: 'America/Los_Angeles',
-    }, 
-    summary: 'Title of event',
-    description: 'Description of event',
-  });
-
-  await getUserCalendar(gapi);
 }

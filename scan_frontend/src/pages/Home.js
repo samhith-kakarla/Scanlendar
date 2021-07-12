@@ -12,7 +12,9 @@ import mainLogo from '../assets/logo.jpg';
 
 const Home = () => {
   const gapi = window.gapi;
-  const { isAuthenticated, setIsAuthenticated, setUser } = useContext(CalendarContext);
+  const { 
+    isAuthenticated, setIsAuthenticated, setUser, setCalendarEvents } 
+  = useContext(CalendarContext);
   const history = useHistory();
 
   const googleAuthenticate = () => {
@@ -34,6 +36,16 @@ const Home = () => {
       gapi.client.load('calendar', 'v3', () => console.log('bam!'))
 
       gapi.auth2.getAuthInstance().signIn().then((googleUser) => {
+        gapi.client.calendar.events.list({
+          calenderId: 'primary',
+          timeMin: new Date().toISOString(),
+          showDeleted: false,
+          singleEvents: true,
+          maxResults: 5,
+          orderBy: 'startTime',
+        }).then((calendarEvents) => {
+          setCalendarEvents(calendarEvents.result.items);
+        });      
         // const token = googleUser.getAuthResponse().id_token;
         // console.log(token);
 
