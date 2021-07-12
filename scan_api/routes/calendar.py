@@ -15,10 +15,10 @@ def getEventInfo(text: str):
     event_info = Nlp(text)
 
     return {
-        'title': 'title', 
-        'description': 'description', 
-        'start_time': "00:00-{}:00".format(event_info['time']),
-        'end_time': 'end time' 
+        'title': event_info['day'], 
+        'description': event_info['description'], 
+        'start_time': "00:00-{}:00".format(event_info['start_time']),
+        'end_time': "00:00-{}:00".format(event_info['end_time']),
     }
 
 
