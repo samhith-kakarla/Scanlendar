@@ -32,9 +32,12 @@ for num in inums:
 
 def Nlp(text_data):
 
+    #Setting up stemmer and lematizer and defining eventual return object
     return_dict = {}
     stemr = PorterStemmer()
     lemr = WordNetLemmatizer()
+    
+    #Tokenizing Data and Removing Stop Words
     token_list = word_tokenize(text_data)
     stop_words = set(stopwords.words('english'))
     # stop_words.add('am')
@@ -44,16 +47,22 @@ def Nlp(text_data):
     for i in range(len(token_list)):
         if token_list[i].casefold() not in stop_words:
             filtered.append(token_list[i])
-
+    
+    #Stemming Text Data and Tagging by part of speech
     stemmed = [stemr.stem(word) for word in filtered]
     tagged = nltk.pos_tag(stemmed)
+    
+    #Lemmatizing Text Data
     lemmatized = []
 
     for i in range(len(tagged)):
         lemmatized.append(lemr.lemmatize(
             tagged[i][0], tag_map[tagged[i][1][0]]))
 
+    #Retagging Text data by part of speech to prepare for chunking
     retagged = nltk.pos_tag(lemmatized)
+    
+    #Esablishing grammar rules and chunking text data
     grammar = """NP: {<DT|RB><VBZ>*<CD><NN>}
                      {<VBZ><CD><NN>}
                      {<CD><NN><VBZ>}
@@ -61,6 +70,8 @@ def Nlp(text_data):
                      """
     parser = nltk.RegexpParser(grammar)
     tree = parser.parse(retagged)
+    
+    #Reformatting chunked text data to extract information
     text = str(tree).splitlines()
     rfinal = []
 
