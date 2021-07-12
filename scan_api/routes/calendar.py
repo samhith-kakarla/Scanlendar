@@ -17,8 +17,8 @@ def getEventInfo(text: str):
     return {
         'title': event_info['day'], 
         'description': event_info['description'], 
-        'start_time': "00:00-{}:00".format(event_info['start_time']),
-        'end_time': "00:00-{}:00".format(event_info['end_time']),
+        'start_time': "{}:00-{}:00".format(event_info['start_time']),
+        'end_time': "{}:00-{}:00".format(event_info['end_time']),
     }
 
 
