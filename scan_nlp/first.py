@@ -18,8 +18,21 @@ tag_map['J'] = wordnet.ADJ
 tag_map['V'] = wordnet.VERB
 tag_map['R'] = wordnet.ADV
 
+days = [
+    "sunday", "monday", "tuesday",
+    "wednesday", "thursday", "friday",
+    "saturday"
+]
+
+inums = [1,2,3,4,5,6,7,8,9]
+nums = []
+
+for num in inums:
+    nums.append(str(num))
+
 def Nlp(text_data):
     
+    return_dict = {}
     stemr = PorterStemmer()
     lemr = WordNetLemmatizer()
     token_list = word_tokenize(text_data)   
@@ -47,19 +60,37 @@ def Nlp(text_data):
                      """   
     parser = nltk.RegexpParser(grammar)
     tree = parser.parse(retagged)
+    text = str(tree).splitlines()
+    rfinal = []
 
-    print(tree)
-    tree.draw()
-    # print(tree[0])
+    for i in range(len(text)):
+        if "NP" in text[i]:
+            final = str(str(text[i]).split()).split("/")
+    
+    for i in range(len(final)):
+        final[i] = final[i].split("'")
+        for j in range(len(final[i])):
+            rfinal.append(final[i][j])
+
+    for i in range(len(rfinal)):
+        if rfinal[i] in days:
+            return_dict['day'] = rfinal[i]
+        
+        elif rfinal[i][0] in nums:
+            return_dict['time'] = rfinal[i] + " pm"
+    
+    return return_dict
+
+
 
 if __name__ == "__main__":
 
-    text1 = "2 hour meeting with John about virtual teaching and e-learning on Zoom a week from now on Friday at 12:34 PM."
-    text2 = "You, me, 3 hour fun time at the carnival with Bill on Monday at 4 PM focused on winning prizes and playing games"
+    text1 = "Meeting with John about virtual teaching and e-learning on Zoom a week from now on Friday at 12:34 PM."
+    text2 = "You, me, fun time at the carnival with Bill on Monday at 4 PM focused on winning prizes and playing games"
     text3 = "We are eating pasta and having dinner at 10:27 PM on Tuesday. I am so excited for the fettucini alfredo"
-    Nlp(text1)
-    Nlp(text2)
-    Nlp(text3)
+    print(Nlp(text1))
+    print(Nlp(text2))
+    print(Nlp(text3))
 
 
 """
