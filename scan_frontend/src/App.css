@@ -2,37 +2,231 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-logo {
+  height: 300px;
+  margin-top: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header-text {
+  font-size: 35px;
+  margin: 23px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header-description {
+  color: white;
+  font-size: 18px;
+  margin: 15px;
+  margin-bottom: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.google-sign-in-button {
+  margin: auto;
+}
+
+.djkdjfk {
+  font-family:fantasy;
+}
+.frame-1 {
+  align-items: center;
+  background-color: rgb(37,203,251);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  mix-blend-mode: normal;
+  padding: 0 53px;
+  width: 460px;
+}
+
+.overlap-group {
+  height: 214px;
+  margin-top: -4px;
+  position: relative;
+  width: 170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ellipse-1 {
+  height: 147px;
+  mix-blend-mode: normal;
+  top: 67px;
+  width: 170px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: absolute;
+}
+
+.title {
+  color: var(--black);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-l);
+  font-weight: 700;
+  letter-spacing: 0;
+  mix-blend-mode: normal;
+  position: absolute;
+  text-align: center;
+  left: 60px;
+  top: 119px;
+}
+
+.transparentlogo-1-1 {
+  height: 130px;
+  mix-blend-mode: normal;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: relative;
+  margin-top: 100px;
+}
+
+.samhith-kakarlas {
+  color: var(--white);
+  font-family: var(--font-family-roboto);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-left: 1.0px;
+  margin-top: 10px;
+  min-height: 35px;
+  min-width: 243px;
+  mix-blend-mode: normal;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+}
+
+.calendar {
+  color: var(--white);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-left: 5.0px;
+  margin-top: 5px;
+  min-height: 25px;
+  min-width: 87px;
+  mix-blend-mode: normal;
+  text-align: center;
+  color: white;
+}
+
+.overlap-group2 {
+  align-items: flex-start;
+  background-color: #63DBF3;
+  display: flex;
+  flex-direction: 'row';
+  height: 15px;
+  justify-content: flex-end;
+  margin-left: 13.0px;
+  margin-top: 15px;
+  width: 200px; 
+  padding: 10px;
+  padding-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+}
+
+.view-my-calendar {
+  color: var(--black);
+  font-family: var(--font-family-roboto);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  height: 20px;
+  mix-blend-mode: normal;
+  position: relative;;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.overlap-group1 {
+  align-items: flex-start;
+  align-self: flex-end;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  min-height: 240px;
+  padding: 11px 33px;
+  width: 280px;
+  border-radius: 15px;
+}
+
+.create-a-new-event {
+  align-self: center;
+  color: var(--black);
+  font-family: var(--font-family-roboto);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-left: 1.0px;
+  margin-top: 10px;
+  min-height: 25px;
+  min-width: 173px;
+  mix-blend-mode: normal;
+}
+
+.rectangle-3 {
+  height: 84px;
+  margin-top: 14px;
+  mix-blend-mode: normal;
+  width: 250px;
+  display: block;
+  margin: auto;
+  color: white;
+  font-size: 12px;
+  font-style: italic;
+  padding: 15px;
+  border: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+  background-color:rgb(138, 223, 242)
+}
+
+.rectangle-3::placeholder {
+  color: white;
+}
+
+.bbb {
+  top: 15px;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  background-color:rgb(8, 90, 112);
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 24px;
+}
+
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:700");
+
+.screen a {
+  display: contents;
+  text-decoration: none;
+  background-color: rgb(37,203,251);
+  height: 100vh
+}
+
+.container-center-horizontal {
+  background-color: rgb(37,203,251);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  pointer-events: none;
+  width: 100%;
+  height: 100vh
+}
+
+.container-center-horizontal > * {
+  flex-shrink: 0;
+  pointer-events: auto;
 }
