@@ -1,4 +1,6 @@
 from fastapi import APIRouter, status
+from nltk.util import py25
+from scan_nlp import Nlp
 
 # from scan_api.schemas.calendar import CalendarEventModel
 
@@ -10,15 +12,13 @@ def overview():
 
 @calendar_router.post('/get_event_info/{text}')
 def getEventInfo(text: str):
-    event_info = run_nlp(text)
+    event_info = Nlp(text)
 
     return {
-        'title': event_info['text'], 
-        'description': event_info['description'], 
-        'start_time': event_info['start_time'], 
-        'end_time': event_info['end_time'], 
-        'start_date': event_info['start_date'], 
-        'end_date': event_info['end_date']
+        'title': 'title', 
+        'description': 'description', 
+        'start_time': "00:00-{}:00".format(event_info['time']),
+        'end_time': 'end time' 
     }
 
 
